@@ -63,7 +63,7 @@ function getJwt(user) {
     const payload = {
         userId: user.id,
         username: user.username,
-        phoneNumber: user.phoneNumber
+        phone_number: user.phone_number
     };
 
     const jwtOptions = {
