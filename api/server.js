@@ -8,4 +8,8 @@ server.use(helmet());
 server.use(cors());
 server.use(express.json());
 
+server.get("/", (req, res) => {
+    res.status(200).json({ WELCOME: "Water My Plants API" })
+})
+
 module.exports = server;
