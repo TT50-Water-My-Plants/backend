@@ -21,6 +21,19 @@ router.post('/', restricted, (req, res) => {
       })
 })
 
+// [GET] specific plants
+router.get('/:id', (req, res) => {
+   Plants.findPlantsById(req.params.id)
+      .then(plant => {
+         res.status(201).json(plant)
+      })
+      .catch(error => {
+         res.status(500).json({
+            error: 'Please provide correct id'
+         })
+      })
+})
+
 // [GET] all plants from specific user
 router.get('/users/:id', restricted, (req, res) => {
    Plants.findPlantsByUserId(req.params.id)
@@ -47,7 +60,7 @@ router.put('/:id', restricted, (req, res) => {
       })
 })
 
-// [DELETE] plant on specific user
+// [DELETE] plant
 router.delete('/:id/', restricted, (req, res) => {
    Plants.removePlants(req.params.id)
       .then(plant => {

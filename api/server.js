@@ -11,7 +11,6 @@ server.use(helmet());
 server.use(cors());
 server.use(express.json());
 server.use('/api/plants', plantsRouter);
-
 server.use("/api/account", userRouter);
 server.use("/api/auth", authRouter);
 
