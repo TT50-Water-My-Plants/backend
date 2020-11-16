@@ -29,7 +29,7 @@ router.post("/register", (req, res) => {
             });
     } else {
         res.status(400).json({
-            message: "please provide username and password",
+            message: "please provide username, phone number and password",
         });
     }
 });
