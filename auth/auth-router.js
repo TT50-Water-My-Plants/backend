@@ -40,11 +40,12 @@ router.post("/login", (req, res) => {
     if (isValid(req.body)) {
         Users.findBy({ username })
             .then(([user]) => {
+                console.log(user)
                 // compare the password the hash stored in the database
                 if (user && bcryptjs.compareSync(password, user.password)) {
                     const token = getJwt(user);
 
-                    res.status(200).json({ message: "Welcome back to Water My Plants!", token });
+                    res.status(200).json({ message: "Welcome back to Water My Plants!", token, user_id: user.id });
                 } else {
                     res.status(401).json({ message: "Invalid credentials" });
                 }
