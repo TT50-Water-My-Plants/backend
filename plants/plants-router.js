@@ -7,7 +7,7 @@ const router = express.Router()
 const restricted = require('../auth/auth-middleware')
 
 // [POST] new plant
-router.post('/users/:id', restricted, (req, res) => {
+router.post('/', restricted, (req, res) => {
 
    Plants.addPlants(req.body)
       .then(plant => {
