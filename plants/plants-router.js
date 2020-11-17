@@ -6,10 +6,9 @@ const router = express.Router()
 
 const restricted = require('../auth/auth-middleware')
 
-
 // [POST] new plant
 router.post('/users/:id', restricted, (req, res) => {
-   
+
    Plants.addPlants(req.body)
       .then(plant => {
          Plants.addPlantsIdUserId({ // add additional id's info into usersPlant table.
@@ -27,7 +26,7 @@ router.post('/users/:id', restricted, (req, res) => {
       })
       .catch(error => {
          res.status(500).json({
-            error: 'nickename, species, h2o_frequency is required'
+            error: 'nickname, species, h2o_frequency is required'
          })
       })
 })
