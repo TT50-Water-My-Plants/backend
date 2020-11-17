@@ -19,11 +19,12 @@ router.post('/', restricted, (req, res) => {
          })
       })
 })
+
 // [POST] plant to user
 router.post('/:id/users', restricted, (req, res) => {
    Plants.addPlantsIdUserId({
       plant_id: req.params.id,
-      user_id: req.jwt.userId
+      user_id: req.body.user_id
    })
       .then(([id]) => {
          Plants.findPlantsByUserId(req.params.id)
