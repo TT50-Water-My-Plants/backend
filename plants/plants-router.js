@@ -8,11 +8,22 @@ const restricted = require('../auth/auth-middleware')
 
 
 // [POST] new plant
-router.post('/', restricted, (req, res) => {
-   console.log(req.body)
+router.post('/users/:id', restricted, (req, res) => {
+   
    Plants.addPlants(req.body)
       .then(plant => {
-         res.status(201).json(plant)
+         Plants.addPlantsIdUserId({ // add additional id's info into usersPlant table.
+            plant_id: plant.id,
+            user_id: req.params.id
+         })
+         .then(info => {
+            res.status(201).json(plant)
+         })
+         .catch(error => {
+            res.status(500).json({
+               message: 'Something bad happen'
+            })
+         })
       })
       .catch(error => {
          res.status(500).json({
@@ -22,7 +33,7 @@ router.post('/', restricted, (req, res) => {
 })
 
 // [GET] specific plants
-router.get('/:id', (req, res) => {
+router.get('/:id', restricted, (req, res) => {
    Plants.findPlantsById(req.params.id)
       .then(plant => {
          res.status(201).json(plant)
@@ -61,12 +72,21 @@ router.put('/:id', restricted, (req, res) => {
 })
 
 // [DELETE] plant
-router.delete('/:id/', restricted, (req, res) => {
+router.delete('/:id', restricted, (req, res) => {
    Plants.removePlants(req.params.id)
       .then(plant => {
-         res.status(201).json({
-            message: 'Successfully deleted'
-         })
+         Plants.removePlantsIdUserId(req.params.id)
+            .then(plant => {
+               res.status(201).json({
+                  message: 'Successfully deleted'
+               })
+            })
+            .catch(error => {
+               res.status(500).json({
+                  message: 'Something went wrong!'
+               })
+            })
+         
       })
       .catch(error => {
          res.status(500).json({

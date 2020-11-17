@@ -1,7 +1,9 @@
 const db = require('../database/connection')
 
 module.exports = {
+   removePlantsIdUserId,
    findPlantsByUserId,
+   addPlantsIdUserId,
    findPlantsById,
    updatePlants,
    removePlants,
@@ -41,6 +43,11 @@ function addPlants(plant){
       })
 }
 
+function addPlantsIdUserId(info){
+   return db('usersPlants')
+      .insert(info)
+}
+
 function updatePlants(id, changes){
    return db('plants')
       .where({ id })
@@ -52,6 +59,12 @@ function updatePlants(id, changes){
 
 function removePlants(id){
    return db('plants')
+      .where({ id })
+      .del()
+}
+
+function removePlantsIdUserId(id){
+   return db('usersPlants')
       .where({ id })
       .del()
 }

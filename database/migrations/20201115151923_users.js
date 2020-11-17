@@ -14,8 +14,8 @@ exports.up = function(knex) {
 })
 .createTable("usersPlants", tbl => {
     tbl.increments();
-    tbl.integer("plant_id").unsigned().notNullable().references("id").inTable("plants").onUpdate("CASCADE").onDelete("RESTRICT");
-    tbl.integer("user_id").unsigned().notNullable().references("id").inTable("users").onUpdate("CASCADE").onDelete("RESTRICT");
+    tbl.integer("plant_id").unsigned().notNullable().references("id").inTable("plants").onUpdate("CASCADE").onDelete("CASCADE");
+    tbl.integer("user_id").unsigned().notNullable().references("id").inTable("users").onUpdate("CASCADE").onDelete("CASCADE");
 })
 };
 
