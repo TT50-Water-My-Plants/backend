@@ -11,22 +11,28 @@ router.post('/users/:id', restricted, (req, res) => {
 
    Plants.addPlants(req.body)
       .then(plant => {
-         Plants.addPlantsIdUserId({ // add additional id's info into usersPlant table.
-            plant_id: plant.id,
-            user_id: req.params.id
+         res.status(201).json(plant)
+      })
+      .catch(error => {
+         res.status(500).json({
+            error: 'Plant already exist, please add different plant name!'
          })
-         .then(info => {
-            res.status(201).json(plant)
-         })
-         .catch(error => {
-            res.status(500).json({
-               message: 'Something bad happen'
-            })
+      })
+})
+// [POST] plant to user
+router.post('/:id/users', restricted, (req, res) => {
+   Plants.addPlantsIdUserId({
+      plant_id: req.params.id,
+      user_id: req.jwt.userId
+   })
+      .then(([id]) => {
+         res.status(201).json({
+            message: 'Succesfully added'
          })
       })
       .catch(error => {
          res.status(500).json({
-            error: 'nickname, species, h2o_frequency is required'
+            error: 'Something went wrong with userId'
          })
       })
 })
