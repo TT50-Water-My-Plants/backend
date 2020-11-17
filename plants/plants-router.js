@@ -15,7 +15,7 @@ router.post('/', restricted, (req, res) => {
       })
       .catch(error => {
          res.status(500).json({
-            error: 'Plant already exist, please add different plant name!'
+            error: 'System Error!'
          })
       })
 })

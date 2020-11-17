@@ -50,10 +50,15 @@ function addPlants(plant){
 function addPlantsIdUserId(info){
    return db('usersPlants')
       .insert(info)
-      .then(res => {
+      .then(() => {
          return findPlantsByUserId(info.user_id)
       })
 }
+// function addPlantsIdUserId(info){
+//    return db('usersPlants')
+//       .insert(info)
+// }
+
 
 function updatePlants(id, changes){
    return db('plants')
