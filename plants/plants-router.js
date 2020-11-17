@@ -22,13 +22,15 @@ router.post('/', restricted, (req, res) => {
 
 // [POST] plant to user
 router.post('/:id/users', restricted, (req, res) => {
+   console.log(req.body)
    Plants.addPlantsIdUserId({
       plant_id: req.params.id,
       user_id: req.body.user_id
    })
       .then(([id]) => {
-         Plants.findPlantsByUserId(req.params.id)
+         Plants.findPlantsByUserId(req.body.user_id)
             .then(plants => {
+               console.log(plants)
                res.status(201).json(plants)
             })
             .catch(error => {
