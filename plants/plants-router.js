@@ -37,6 +37,19 @@ router.post('/:id/users', restricted, (req, res) => {
       })
 })
 
+// [GET] all plants
+router.get('/', restricted, (req, res) => {
+   Plants.findAllPlants()
+      .then(plants => {
+         res.status(201).json(plants)
+      })
+      .catch(error => {
+         res.status(500).json({
+            error: 'please provide correct username and password'
+         })
+      })
+})
+
 // [GET] specific plants
 router.get('/:id', restricted, (req, res) => {
    Plants.findPlantsById(req.params.id)

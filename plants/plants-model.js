@@ -5,10 +5,14 @@ module.exports = {
    findPlantsByUserId,
    addPlantsIdUserId,
    findPlantsById,
+   findAllPlants,
    updatePlants,
    removePlants,
    addPlants,
 
+}
+function findAllPlants(){
+   return db('plants')
 }
 
 function findPlantsByUserId(id){
