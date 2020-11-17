@@ -26,9 +26,15 @@ router.post('/:id/users', restricted, (req, res) => {
       user_id: req.jwt.userId
    })
       .then(([id]) => {
-         res.status(201).json({
-            message: 'Succesfully added'
-         })
+         Plants.findPlantsByUserId(req.params.id)
+            .then(plants => {
+               res.status(201).json(plants)
+            })
+            .catch(error => {
+               res.status(500).json({
+                  error: 'Please provide correct user id'
+               })
+            })
       })
       .catch(error => {
          res.status(500).json({
