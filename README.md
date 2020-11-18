@@ -12,19 +12,14 @@ Description: get list of registered users info
 [GET] /api/account/:id
 Description: get specific registered user info
 
+[GET] /api/plants
+Description: get All plants
+
 [GET] /api/plants/:id
 Description: specific plant info
 
 [GET] /api/plants/users/:id
 Description: get list of plants from specific user id
-
-[POST] /api/plants/:id/users
-Description: add users with specific plants that you chose
-Format to send:
-{
-plant_id: '',
-user_id: '',
-}
 
 [POST] /api/auth/register
 Description: register new user
@@ -43,13 +38,21 @@ username: '',
 password: ''
 }
 
-[POST] /api/plants/users/:id
+[POST] /api/plants
 Description: add plants at specific user id
 Format to send:
 {
 nickname: 'Lavender',
 species: 'Lavandula',
 h2o_frequency: '1 time per day'
+}
+
+[POST] /api/plants/:id/users
+Description: add users with specific plants that you chose
+Format to send:
+{
+plant_id: '',
+user_id: '',
 }
 
 [PUT] /api/plants/:id

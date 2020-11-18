@@ -42,7 +42,7 @@ function findPlantsById(id){
 function addPlants(plant){
    return db('plants')
       .insert(plant)
-      .then(([id]) => {
+      .then(( [id] ) => {
          console.log('ID: ', id)
          return findPlantsById(id)
       })
