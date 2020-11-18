@@ -17,7 +17,7 @@ function findAllPlants(){
 
 function findPlantsByUserId(id){
    return db('plants as p')
-      .select('nickname', 'species', 'h2o_frequency')
+      .select('nickname', 'species', 'h2o_frequency', 'plant_id')
       .join('usersPlants as up', 'up.plant_id', 'p.id')
       .join('users as u', 'up.user_id', 'u.id')
       .where({ 'u.id': id })
