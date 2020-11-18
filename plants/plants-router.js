@@ -103,24 +103,16 @@ router.put('/:id', restricted, (req, res) => {
 
 // [DELETE] plant
 router.delete('/:id', restricted, (req, res) => {
-   Plants.removePlants(req.params.id)
+
+   Plants.removePlantsIdUserId(req.params.id)
       .then(plant => {
-         Plants.removePlantsIdUserId(req.params.id)
-            .then(plant => {
-               res.status(201).json({
-                  message: 'Successfully deleted'
-               })
-            })
-            .catch(error => {
-               res.status(500).json({
-                  message: 'Something went wrong!'
-               })
-            })
-         
+         res.status(201).json({
+            message: 'Successfully deleted'
+         })
       })
       .catch(error => {
          res.status(500).json({
-            error: 'Please provide correct id'
+            message: 'Something went wrong!'
          })
       })
 })
