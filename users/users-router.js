@@ -36,6 +36,7 @@ router.put("/:id", restricted, (req, res) => {
         if(!user){
             res.status(404).json({ message: "Can't find user with provided id." })
         } else{
+            delete user.password;
             res.status(200).json(user)
         }
     }) .catch(error => {
