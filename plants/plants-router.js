@@ -7,6 +7,8 @@ const router = express.Router()
 const restricted = require('../auth/auth-middleware')
 
 // [POST] new plant
+// it works on localhost:4646, but not on Heroku app:
+// https://water-my-plants-tt50.herokuapp.com/api/plants/
 router.post('/', restricted, (req, res) => {
 
    Plants.addPlants(req.body)
@@ -15,7 +17,7 @@ router.post('/', restricted, (req, res) => {
       })
       .catch(error => {
          res.status(500).json({
-            error: 'System Error!'
+            error: 'System Error!' 
          })
       })
 })
