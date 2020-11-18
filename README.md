@@ -4,42 +4,23 @@ test test for heroku deploy
 
 baseURL: https://water-my-plants-tt50.herokuapp.com/
 
-## ENDPOINTS
+## ENDPOINTS for Plants
 
-[GET] /api/account/
-Description: get list of registered users info
-
-[GET] /api/account/:id
-Description: get specific registered user info
+### get All plants
 
 [GET] /api/plants
-Description: get All plants
+
+### get specific plant info
 
 [GET] /api/plants/:id
-Description: specific plant info
+
+### get list of plants from specific user id
 
 [GET] /api/plants/users/:id
-Description: get list of plants from specific user id
 
-[POST] /api/auth/register
-Description: register new user
-Format to send:
-{
-username: 'LambdaHost',
-phone_number: '909-123-1234',
-password: 'Lambda123!'
-}
-
-[POST] /api/auth/login
-Description: login current user
-Format to send:
-{
-username: '',
-password: ''
-}
+### add plants to drop down menu
 
 [POST] /api/plants
-Description: add plants at specific user id
 Format to send:
 {
 nickname: 'Lavender',
@@ -47,22 +28,15 @@ species: 'Lavandula',
 h2o_frequency: '1 time per day'
 }
 
+### add specific plants that you chose from drop down menu to current user
+
 [POST] /api/plants/:id/users
-Description: add users with specific plants that you chose
 Format to send:
 {
 plant_id: '',
 user_id: '',
 }
 
-[PUT] /api/plants/:id
-Description: update specific plant
-Format to send:
-{
-nickname: 'Lavender',
-species: 'Lavandula',
-h2o_frequency: '1 time per day'
-}
+### delete specific plant from current user
 
 [DELETE] /api/plants/:id
-Description: delete specific plant

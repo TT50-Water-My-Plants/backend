@@ -7,7 +7,7 @@ module.exports = {
    findPlantsById,
    findAllPlants,
    updatePlants,
-   removePlants,
+   // removePlants,
    addPlants,
 
 }
@@ -70,11 +70,11 @@ function updatePlants(id, changes){
       })
 }
 
-function removePlants(id){
-   return db('plants')
-      .where({ id })
-      .del()
-}
+// function removePlants(id){
+//    return db('plants')
+//       .where({ id })
+//       .del()
+// }
 
 function removePlantsIdUserId(id){
    return db('usersPlants')

@@ -7,8 +7,6 @@ const router = express.Router()
 const restricted = require('../auth/auth-middleware')
 
 // [POST] new plant
-// it works on localhost:4646, but not on Heroku app:
-// https://water-my-plants-tt50.herokuapp.com/api/plants/
 router.post('/', restricted, (req, res) => {
 
    Plants.addPlants(req.body)
@@ -88,19 +86,6 @@ router.get('/users/:id', restricted, (req, res) => {
       })
 })
 
-// [PUT] update specific plant info
-router.put('/:id', restricted, (req, res) => {
-   Plants.updatePlants(req.params.id, req.body)
-      .then(plant => {
-         res.status(201).json(plant)
-      })
-      .catch(error => {
-         res.status(500).json({
-            error: 'Please provide correct format'
-         })
-      })
-})
-
 // [DELETE] plant
 router.delete('/:id', restricted, (req, res) => {
 
@@ -119,3 +104,16 @@ router.delete('/:id', restricted, (req, res) => {
 
 
 module.exports = router
+
+// [PUT] update specific plant info
+// router.put('/:id', restricted, (req, res) => {
+//    Plants.updatePlants(req.params.id, req.body)
+//       .then(plant => {
+//          res.status(201).json(plant)
+//       })
+//       .catch(error => {
+//          res.status(500).json({
+//             error: 'Please provide correct format'
+//          })
+//       })
+// })
