@@ -2,9 +2,9 @@
 
 test test for heroku deploy
 
-baseURL: https://water-my-plants-tt50.herokuapp.com/
+### ENDPOINTS for Plants
 
-## ENDPOINTS for Plants
+baseURL: https://water-my-plants-tt50.herokuapp.com/
 
 ### get All plants
 
@@ -37,6 +37,6 @@ plant_id: '',
 user_id: '',
 }
 
-### delete specific plant from current user
+### delete one of the list of plants from current user
 
 [DELETE] /api/plants/:id
