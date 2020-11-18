@@ -14,6 +14,7 @@ router.post('/', restricted, (req, res) => {
          res.status(201).json(plant)
       })
       .catch(error => {
+         console.log("ERROR", error)
          res.status(500).json({
             error: 'System Error!'
          })
