@@ -86,18 +86,17 @@ router.get('/users/:id', restricted, (req, res) => {
       })
 })
 
-// [DELETE] plant
+// [DELETE] plant/user
 router.delete('/:id', restricted, (req, res) => {
+   console.log(req.body, req.params.id)
 
    Plants.removePlantsIdUserId(req.params.id)
       .then(plant => {
-         res.status(201).json({
-            message: 'Successfully deleted'
-         })
+         res.status(201).json(plant)
       })
       .catch(error => {
          res.status(500).json({
-            message: 'Something went wrong!'
+            message: 'Something went wrong!', error: error
          })
       })
 })
@@ -115,5 +114,5 @@ module.exports = router
 //          res.status(500).json({
 //             error: 'Please provide correct format'
 //          })
-//       })
+//       })w
 // })
